@@ -1,22 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { Button } from "@/components/Button";
 
 export default function page() {
-  const [state, setState] = useState(0);
+  function butonaBas() {
+    console.log("Ana ekrandaki butona basıldı");
+  }
 
-  // const arttir = () => setState();
-  function arttir(x = 1) {
-    setState(state + x);
+  function baskaBirFonksiyon() {
+    console.log("ne yazcam bilmiyorum");
   }
 
   return (
     <div>
-      <div>{state}</div>
-      <div>
-        <button onClick={() => arttir(1)}>1 Arttır</button>
-        <button onClick={() => arttir(5)}>5 Arttır</button>
-      </div>
+      Ana Ekran
+      <Button title={"hrhangi bir başlık"} onClick={butonaBas} />
+      <Button title="ikinci buton" onClick={baskaBirFonksiyon} />
     </div>
   );
 }

@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+}
+
+.list {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+}
+
+.listItem {
+  text-transform: capitalize;
+  padding: 8;
+  background-color: rgb(47, 158, 222);
+  color: white;
+  font-weight: bold;
+}

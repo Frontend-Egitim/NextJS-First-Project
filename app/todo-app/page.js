@@ -1,40 +1,39 @@
 "use client";
 
 import { useState } from "react";
+import styles from "./style.module.css";
 
 export default function TodoScreen() {
   const [todolist, setTodoList] = useState([]);
   const [input, setInput] = useState("");
 
-  const addItem = () => {
+  function addItem() {
     if (input.trim().length > 0) {
-      setTodoList((eskiListe) => [...eskiListe, { title: input }]);
+      const newItem = { title: input, id: Date.now() };
+      setTodoList((eskiListe) => [...eskiListe, newItem]);
     }
     setInput("");
-  };
+  }
+
+  function handleDeleteItem(id) {
+    const newTodolist = todolist.filter((a) => a.id !== id);
+    setTodoList(newTodolist);
+  }
 
   return (
-    <div style={{ fontFamily: "helvetica" }}>
+    <div className={styles.container}>
       {/* Header */}
 
       <h1>Todo List</h1>
 
       {/* Todo List */}
       <div>
-        <div style={{ display: "flex" }}>
+        <div>
           <input
-            id="input"
             type="text"
             placeholder="add new todo..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            style={{
-              borderRadius: 12,
-              marginRight: 6,
-              paddingLeft: 6,
-              borderWidth: 1,
-              outlineWidth: 0,
-            }}
           />
           <div
             onClick={addItem}
@@ -59,13 +58,15 @@ export default function TodoScreen() {
               color: "white",
               marginBlock: 6,
               paddingInline: 12,
-              height: 30,
+              height: 40,
               display: "flex",
+              justifyContent: "space-between",
               alignItems: "center",
               borderRadius: 16,
             }}
           >
             <p>{item.title}</p>
+            <button onClick={() => handleDeleteItem(item.id)}>Sil</button>
           </div>
         ))}
       </div>
